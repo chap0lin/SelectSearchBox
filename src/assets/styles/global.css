@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root{
+    height: 100vh;
+    background-color: darkgray;
+}
+
+#select-container {
+    margin: 50px;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+#select-container h1 {
+    padding: 20px;
+}
