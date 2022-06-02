@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import SelectSearchBox, { SelectDataType } from "./components/SelectSearchBox";
 import "./assets/styles/global.css";
 // import axios from 'axios';
@@ -42,24 +42,37 @@ function App() {
     setData(responseData);
   }
 
-  function addNewItem(text: string) {
+  async function addNewItem(text: string) {
     let newData = rawData;
-    newData.push({
-      id: data.length + 1,
+    await newData.push({
+      id: rawData.length + 1,
       text,
     });
     setRawData(newData);
+    setData(newData);
+  }
+
+  function onChange(value: SelectDataType) {
+    console.log(value);
+    /// Se você quiser o ID na hora que selecionar precisa adicionar o item antes!
+    /// Basta descomentar o código abaixo: (e tirar a prop onAddNew do componente)
+    // if(value.id === undefined){
+    //   addNewItem(value.text)
+    //   console.log(rawData.find((item: SelectDataType)=>item.text === value.text))
+    // }
   }
 
   return (
     <div id="select-container">
       <h1>Caixa de entrada/seleção customizada</h1>
       <SelectSearchBox
-        onInputChange={search}
+        onSearch={search}
         data={data}
         label="Fornecedor"
         onAddNew={addNewItem}
         placeholder="Selecione um fornecedor"
+        onChange={onChange}
+        value={{ id: 10, text: "Candice Wu" }}
       />
     </div>
   );
